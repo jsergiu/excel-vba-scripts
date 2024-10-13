@@ -1,15 +1,18 @@
 Sub SetChartSeriesToStacked()
 
-    Dim CHART_NAME As Variant   
+    Dim CHART_NAME As Variant  ' Chart that is affected by the change
+    Dim LINE_SERIES_NAME As Variant ' Series name that will be changed to xlLine
     Dim seriesNames As Variant
     Dim seriesName As Variant
     Dim chartObj As ChartObject
     Dim ser As Series
     Dim serExists As Boolean
     Dim chartExists As Boolean
+    
 
     ' 👇 UPDATE CHART NAME HERE 👇:
     CHART_NAME = "Chart 7"
+    LINE_SERIES_NAME = "my_series"
     
     ' Check if chart exists
     chartExists = False
@@ -26,13 +29,12 @@ Sub SetChartSeriesToStacked()
         ' Loop through each series in the chart
         For seriesCounter = 1 To totalSeries
             Set chartSeries = chartObj.Chart.SeriesCollection(seriesCounter)
-            
-            ' Set series to Column Stacked, except the last three
-            If seriesCounter <= totalSeries - 1 Then
-                chartSeries.ChartType = xlColumnStacked
+            If ser.Name = LINE_SERIES_NAME Then
+                ser.ChartType = xlLine
             Else
-                chartSeries.ChartType = xlLine
+                chartSeries.ChartType = xlColumnStacked
             End If
+
         Next seriesCounter
     Else
         MsgBox "Chart 7 does not exist on the active sheet.", vbExclamation, "Chart Not Found"
