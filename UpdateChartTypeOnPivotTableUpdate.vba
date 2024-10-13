@@ -36,8 +36,6 @@ Sub SetChartSeriesToStacked()
             End If
 
         Next seriesCounter
-    Else
-        MsgBox "Chart 7 does not exist on the active sheet.", vbExclamation, "Chart Not Found"
     End If
 End Sub
 
